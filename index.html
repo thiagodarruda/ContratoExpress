@@ -105,6 +105,7 @@
 
 <script>
 function gerarContrato() {
+
   let tipo = document.getElementById("tipo").value;
   let contratante = document.getElementById("contratante").value;
   let contratado = document.getElementById("contratado").value;
@@ -114,35 +115,80 @@ function gerarContrato() {
   let prazo = document.getElementById("prazo").value;
   let cidade = document.getElementById("cidade").value;
   let clausulas = document.getElementById("clausulas").value;
+
   document.getElementById("resultado").innerText = "Gerando contrato...";
 
-  let contrato = `
-CONTRATO DE ${tipo.toUpperCase()}
+  let contrato = "";
+
+  // 📄 FREELANCER
+  if (tipo === "Freelancer") {
+    contrato = `
+CONTRATO DE PRESTAÇÃO DE SERVIÇOS FREELANCER
+
+CONTRATANTE: ${contratante}
+CONTRATADO (FREELANCER): ${contratado}
+
+OBJETO:
+O freelancer se compromete a realizar o seguinte serviço:
+${descricao}
+
+VALOR E PAGAMENTO:
+O valor acordado é de ${valor}, com pagamento da seguinte forma:
+${pagamento}
+
+PRAZO:
+O serviço deverá ser entregue em ${prazo}.
+
+AUTONOMIA:
+O contratado atuará sem vínculo empregatício, com total autonomia.
+
+RESCISÃO:
+Qualquer parte pode encerrar mediante aviso prévio.
+
+FORO:
+Fica eleito o foro de ${cidade}.
+
+CLÁUSULAS ADICIONAIS:
+${clausulas || "Nenhuma."}
+
+_________________________
+CONTRATANTE
+
+_________________________
+FREELANCER
+`;
+  }
+
+  // 📄 PRESTAÇÃO DE SERVIÇO
+  else if (tipo === "Prestação de Serviço") {
+    contrato = `
+CONTRATO DE PRESTAÇÃO DE SERVIÇOS
 
 CONTRATANTE: ${contratante}
 CONTRATADO: ${contratado}
 
 CLÁUSULA 1 – OBJETO
-O presente contrato tem como objeto a prestação do seguinte serviço:
+Prestação do seguinte serviço:
 ${descricao}
 
 CLÁUSULA 2 – VALOR
-O valor total do contrato é de ${valor}, a ser pago da seguinte forma:
-${pagamento}
+Valor total: ${valor}
+Forma de pagamento: ${pagamento}
 
 CLÁUSULA 3 – PRAZO
-O serviço será prestado no prazo de ${prazo}.
+Execução no prazo de ${prazo}
 
-CLÁUSULA 4 – RESCISÃO
-O contrato poderá ser rescindido por qualquer das partes mediante aviso prévio.
+CLÁUSULA 4 – OBRIGAÇÕES
+O contratado se compromete a executar o serviço com qualidade e responsabilidade.
 
-CLÁUSULA 5 – FORO
-Fica eleito o foro de ${cidade}.
+CLÁUSULA 5 – RESCISÃO
+Pode ser rescindido por qualquer parte com aviso prévio.
 
-CLÁUSULAS ADICIONAIS
-${clausulas || "Nenhuma cláusula adicional."}
+CLÁUSULA 6 – FORO
+Foro de ${cidade}
 
-E por estarem de acordo, assinam:
+CLÁUSULAS ADICIONAIS:
+${clausulas || "Nenhuma."}
 
 _________________________
 CONTRATANTE
@@ -150,6 +196,48 @@ CONTRATANTE
 _________________________
 CONTRATADO
 `;
+  }
+
+  // 📄 AUTÔNOMO
+  else if (tipo === "Autônomo") {
+    contrato = `
+CONTRATO DE PRESTAÇÃO DE SERVIÇOS AUTÔNOMOS
+
+CONTRATANTE: ${contratante}
+PROFISSIONAL AUTÔNOMO: ${contratado}
+
+OBJETO:
+Prestação de serviço autônomo descrito abaixo:
+${descricao}
+
+VALOR:
+O contratante pagará o valor de ${valor}.
+
+FORMA DE PAGAMENTO:
+${pagamento}
+
+PRAZO:
+O serviço será realizado em ${prazo}.
+
+SEM VÍNCULO:
+Este contrato não gera vínculo empregatício.
+
+RESPONSABILIDADES:
+O profissional é responsável pela execução técnica do serviço.
+
+FORO:
+${cidade}
+
+CLÁUSULAS ADICIONAIS:
+${clausulas || "Nenhuma."}
+
+_________________________
+CONTRATANTE
+
+_________________________
+AUTÔNOMO
+`;
+  }
 
   document.getElementById("resultado").innerText = contrato;
 }
