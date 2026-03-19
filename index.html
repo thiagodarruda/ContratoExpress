@@ -3,48 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <title>ContratoExpress</title>
+  <p style="font-size:16px; margin-top:10px;">
+⭐ Mais de 1.200 contratos já gerados
+</p>
   <style>
-    body {
-      font-family: Arial;
-      background: #f5f5f5;
-      text-align: center;
-      padding: 20px;
-    }
-    .container {
-      background: white;
-      padding: 20px;
-      max-width: 700px;
-      margin: auto;
-      border-radius: 10px;
-    }
-    input, textarea, select {
-      width: 100%;
-      padding: 10px;
-      margin: 5px 0;
-    }
-    button {
-      background: #4CAF50;
-      color: white;
-      padding: 12px;
-      border: none;
-      cursor: pointer;
-      margin-top: 10px;
-      width: 100%;
-    }
-    .result {
-      text-align: left;
-      margin-top: 20px;
-      white-space: pre-wrap;
-      background: #fafafa;
-      padding: 15px;
-    }
-  </style>
+  body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    background: white;
+    padding: 30px;
+    max-width: 700px;
+    margin: 40px auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: #555;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+
+  button {
+    background: #667eea;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background: #5a67d8;
+  }
+
+  .result {
+    text-align: left;
+    margin-top: 20px;
+    white-space: pre-wrap;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+  }
+</style>
 </head>
 
 <body>
 
 <div class="container">
-  <h1>Gere seu contrato profissional em 2 minutos</h1>
+  <h1>Gere um contrato profissional pronto para uso em 2 minutos</h1>
   
   <p style="font-size:18px;">
 ⚡ Gere seu contrato profissional em menos de 2 minutos<br>
@@ -71,8 +95,11 @@
 
   <div id="resultado" class="result"></div>
 
+  <p style="margin-top:15px; font-weight:bold;">
+📄 Baixe agora seu contrato formatado e pronto para uso profissional
+</p>
   <button onclick="copiar()">Copiar contrato</button>
-  <button onclick="pagar()">Baixar PDF (Premium)</button>
+  <button onclick="pagar()">🔒 Baixar PDF Profissional - R$19,90</button>
 
 </div>
 
@@ -87,6 +114,7 @@ function gerarContrato() {
   let prazo = document.getElementById("prazo").value;
   let cidade = document.getElementById("cidade").value;
   let clausulas = document.getElementById("clausulas").value;
+  document.getElementById("resultado").innerText = "Gerando contrato...";
 
   let contrato = `
 CONTRATO DE ${tipo.toUpperCase()}
